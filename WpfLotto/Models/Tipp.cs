@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace WpfLotto.Models
 {
-    public class Sorsolas
+    public class Tipp
     {
         public int Id { get; set; }
+        public int SorsolasId { get; set; }
         public int szam1 { get; set; }
         public int szam2 { get; set; }
         public int szam3 { get; set; }
         public int szam4 { get; set; }
         public int szam5 { get; set; }
-        public ICollection<Tipp> Tipp { get; } = new List<Tipp>(); 
 
-        public Sorsolas()
+        public Tipp()
         {
 
         }
-        public Sorsolas(HashSet<int> set)
+        public Tipp(HashSet<int> set)
         {
             var t = set.ToArray();
             szam1 = t[0];

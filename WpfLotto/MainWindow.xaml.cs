@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfLotto.Data;
 
 namespace WpfLotto
 {
@@ -21,10 +22,12 @@ namespace WpfLotto
     public partial class MainWindow : Window
     {
         HashSet<int> Bet;
+        Context db;
         public MainWindow()
         {
             InitializeComponent();
             Bet = new HashSet<int>();
+            db = new Context();
             DrawCheckBox();
 
             
@@ -106,6 +109,9 @@ namespace WpfLotto
                 while (sorsolt.Count < 5);
 
                 Sorsolas.Text = "Sorsolás:\n" + String.Join(",", sorsolt);
+
+                db.Sorsolasok.Add(new Models.Sorsolas(sorsolt));
+                db.SaveChanges();
 
                 Eredmeny.Text = "Eredmeny:\n" + String.Join (",", Bet.Intersect(sorsolt));
             }
